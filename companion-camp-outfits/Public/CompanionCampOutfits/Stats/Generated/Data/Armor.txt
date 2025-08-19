@@ -1,0 +1,249 @@
+new entry "EPI_Camp_Spawn"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "13084436-5d19-4cef-ae53-02857497fc28"
+
+new entry "EPI_Camp_Ascendant"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "76f26388-daff-440a-a4f3-dba4f78e548c"
+
+new entry "EPI_Camp_Shoes_Ascendant"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "8b6555b8-fcf1-4535-b9cd-7e94208ce840"
+
+new entry "EPI_Camp_Shoes_Spawn"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "5fdac3e9-455c-49e0-83a0-3222108f5651"
+
+new entry "EPI_Camp_Gale"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "1cb24313-5ed1-43b7-ab4a-cdf2118422ea"
+
+new entry "EPI_Camp_Gale_God"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "1068659c-f12b-4930-ac4f-c4892af58cd7"
+
+new entry "EPI_Camp_Gale_God_Player"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "73dd34d5-873c-445c-be94-705d611f63b2"
+
+new entry "EPI_Camp_Shoes_Gale"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "dbe8fe69-736f-4ceb-8a98-57d1f9a639be"
+
+new entry "EPI_Camp_Halsin"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "d873fb44-94c7-4b74-a272-1d2e5e43a7ef"
+
+new entry "EPI_Camp_Shoes_Halsin"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "8a40655e-69df-45ab-b1cd-7164c2e29fd4"
+
+new entry "EPI_Camp_Jaheira_Harper"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "bdef460b-374e-45d6-86f7-d272a927b380"
+
+new entry "EPI_Camp_Jaheira"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "e22c8a04-ab6b-4315-a784-81fabb2b8db9"
+
+new entry "EPI_Camp_Shoes_Jaheira_Harper"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "f7018235-a244-43f0-86e9-25b38fcd11a6"
+
+new entry "EPI_Camp_Shoes_Jaheira"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "6d7169af-9b41-42dc-be4f-ece1486cd70e"
+
+new entry "EPI_Camp_Avernus"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "24149d5d-c509-48dc-b026-491c11e60a5c"
+
+new entry "EPI_Camp_Shoes_Avernus"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "c36967e4-26c5-4f2f-b25b-f351a6bac804"
+
+new entry "EPI_Camp_Laezel_Faerun"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "9747dbb0-0f92-483e-80fc-391390d416f9"
+
+new entry "EPI_Camp_Laezel_Gith"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "8c953ad4-1103-4215-9a09-ff95e51cc8e4"
+
+new entry "EPI_Camp_Shoes_Laezel_Faerun"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "cba5d95b-d2a6-4253-abe1-c81da0391c0c"
+
+new entry "EPI_Camp_Shoes_Laezel_Gith"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "a8f1228b-1cdc-4b5c-abf4-d19f41b6bc30"
+
+new entry "EPI_Camp_Prison"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "ffe2cacb-8073-4e6d-bf81-057da0c5030c"
+
+new entry "EPI_Camp_Minsc"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "54c4b72d-0f2d-40be-bab7-c70c5f3adb97"
+
+new entry "EPI_Camp_Shoes_Minsc"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "19963131-982a-44b2-afd8-c2edee9e1b3a"
+
+new entry "EPI_Camp_Minthara_Drow"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "9c035563-05ee-47e1-a3e0-e0420a07f534"
+
+new entry "EPI_Camp_Minthara"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "7d65044d-0d01-44c8-b665-165f0ecc768c"
+
+new entry "EPI_Camp_Shoes_Minthara"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "00d8d8fc-1820-47de-9956-5d4a68a40700"
+
+new entry "EPI_Camp_Shoes_Minthara_Drow"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "7e633d92-271b-4aaf-9880-dd1643bd41a3"
+
+new entry "EPI_Camp_Selune"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "79bb5a64-2019-4818-a898-de179b6bc44c"
+
+new entry "EPI_Camp_Shar"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "8fc09773-7083-466a-8988-e030b6d647e3"
+
+new entry "EPI_Camp_Shoes_Shar"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "e3b092c6-82e8-49df-843c-40d643410171"
+
+new entry "EPI_Camp_Shoes_Selune"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "4f7febc5-fadd-45f2-96c1-d2447fec12bd"
+
+new entry "EPI_Camp_Wyll_Duke"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "7f89e3b8-61ef-498b-bd1b-77f996c5ec42"
+
+new entry "EPI_Camp_Wyll_Blade"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "46c97e62-7d3e-449f-a130-586e8e871947"
+
+new entry "EPI_Camp_Shoes_Wyll_Duke"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "4aa0dbb1-f51a-45bc-8a58-814ac5063035"
+
+new entry "EPI_Camp_Shoes_Wyll_Blade"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "c3f02e6c-d519-40d1-b686-a241a9f9972e"
+
+new entry "EPI_Camp_DU_Rags"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "bdc2247f-32a3-4ded-bffc-8aeb770f23d4"
+
+new entry "EPI_Camp_PartyTav_1"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "edb02b0e-3d91-4a81-a37d-f151bad68c6d"
+
+new entry "EPI_Camp_PartyTav_3"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "782e430e-caef-42eb-abc4-6406544e9714"
+
+new entry "EPI_Camp_PartyTav_4"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "eedda7b5-c1f4-4633-8034-30e63f7ce581"
+
+new entry "BASE_Vanity_Body_Epilogues"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "543d5c85-d5c5-4768-be78-b8173c4e6450"
+
+new entry "EPI_Camp_PartyTav_2"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "98cdd18d-2d8a-4aca-a46b-c4829833482f"
+
+new entry "EPI_Camp_Shoes_PartyTav_3"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "773924ee-02cd-42e7-8480-0c42896f700e"
+
+new entry "EPI_Camp_Shoes_PartyTav_1"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "7dec9f3e-3a90-4588-a995-2986340866c6"
+
+new entry "EPI_Camp_Shoes_PartyTav_4"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "810351d6-75ff-4c95-8f65-fcbfb5d0c19d"
+
+new entry "EPI_Camp_Shoes_PartyTav_2"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "ff7d64c3-3969-44f6-98ee-0add1fb69fef"
+
+new entry "BASE_Vanity_Shoes_Epilogues"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "dc59e71e-a303-497d-9ab7-7354cf8897d8"
+
+new entry "DLC_TWITCH_Underwear_B"
+type "Armor"
+using "_Underwear"
+data "RootTemplate" "f6af55dd-a75a-46ea-87f0-89ebf4e7b74e"
+
+new entry "DLC_TWITCH_Camp_Body"
+type "Armor"
+using "ARM_Camp_Body"
+data "RootTemplate" "9dc4dafd-590a-44ec-8523-95136f46be9e"
+
+new entry "DLC_TWITCH_Underwear_A"
+type "Armor"
+using "_Underwear"
+data "RootTemplate" "bf974183-9bf5-4086-9742-a2deef9e7675"
+
+new entry "DLC_TWITCH_Camp_Shoes"
+type "Armor"
+using "ARM_Camp_Shoes"
+data "RootTemplate" "14339654-a714-4341-b03f-62530508c8e3"

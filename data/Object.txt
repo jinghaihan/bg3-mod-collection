@@ -1,0 +1,7 @@
+new entry "OBJ_ArrowOfSmokepowder"
+type "Object"
+using "OBJ_ArrowOfDetonation"
+data "RootTemplate" "0788a2bb-c732-4ebb-abf9-2ef150f509be"
+data "ValueLevel" "10"
+data "Rarity" "Rare"
+data "ObjectCategory" "ArrowRare"

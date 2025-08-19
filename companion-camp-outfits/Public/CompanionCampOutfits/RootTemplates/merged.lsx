@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<save> 
+	<version major="4" minor="0" revision="6" build="5" /> 
+	<region id="Templates">
+		<node id="Templates">
+			<children> 
+				<node id="GameObjects"> Prologue Camp Clothing Backpack
+					<attribute id="Description" type="TranslatedString" handle="h5d687ef7g3d54g46f4ga74agea1aadeb3bdc" version="1" /> Points to Localization xml file. Generate new handle
+					<attribute id="DisplayName" type="TranslatedString" handle="h5d687ef7g3d54g46f4ga74agea1aadeb3bdc" version="1" /> Points to Localization xml file. Generate new handle
+					<attribute id="Icon" type="FixedString" value="Item_LOOT_GEN_Backpack_A_Posed_A" /> Keep the original icon, as the visuals have not been altered
+					<attribute id="InventoryType" type="uint8" value="11" />
+					<attribute id="LevelName" type="FixedString" value="" />
+					<attribute id="MapKey" type="FixedString" value="9aa2cec9-2234-46ff-80bc-05d73bf60d61" /> Same UUID as in Object.txt. Generate new UUID
+					<attribute id="Name" type="LSString" value="CCO_OBJ_PrologueCampClothingBackpack" />
+					<attribute id="ParentTemplateId" type="FixedString" value="aebf62bd-e68d-4e14-9ed7-1d51289a3e4e" /> Points to LOOT_GEN_Backpack_B_Posed_A in Shared.PAK's RootTemplate
+					<attribute id="Scale" type="float" value="10" /> Use this to shrink or enlarge your container
+					<attribute id="Stats" type="FixedString" value="CCO_OBJ_PrologueCampClothingBackpack" /> 
+					<attribute id="Tooltip" type="uint8" value="2" />
+					<attribute id="TreasureOnDestroy" type="bool" value="True" />
+					<attribute id="Type" type="FixedString" value="item" />
+					<attribute id="_OriginalFileVersion_" type="int64" value="144115188075855912" />
+					<children>
+						<node id="GameMaster" />
+						<node id="InventoryList">
+							<children>
+								<node id="InventoryItem">
+									<attribute id="Object" type="FixedString" value="CCO_Prologue_Camp_Clothing_Backpack" /> Points to TreasureTable.txt
+								</node>
+							</children>
+						</node>
+					</children>
+				</node>
+
+				<node id="GameObjects"> Epilogue Camp Clothing Backpack
+					<attribute id="Description" type="TranslatedString" handle="hb787db17g3418g4193ga8fegc1b9f3efa500" version="1" /> Points to Localization xml file. Generate new handle
+					<attribute id="DisplayName" type="TranslatedString" handle="hb787db17g3418g4193ga8fegc1b9f3efa500" version="1" /> Points to Localization xml file. Generate new handle
+					<attribute id="Icon" type="FixedString" value="Item_LOOT_GEN_Backpack_A_Posed_A" /> Keep the original icon, as the visuals have not been altered
+					<attribute id="InventoryType" type="uint8" value="11" />
+					<attribute id="LevelName" type="FixedString" value="" />
+					<attribute id="MapKey" type="FixedString" value="9d334e0c-b855-4218-8e85-cefc1255d209" /> Same UUID as in Object.txt. Generate new UUID
+					<attribute id="Name" type="LSString" value="CCO_OBJ_EpilogueCampClothingBackpack" />
+					<attribute id="ParentTemplateId" type="FixedString" value="aebf62bd-e68d-4e14-9ed7-1d51289a3e4e" /> Points to LOOT_GEN_Backpack_B_Posed_A in Shared.PAK's RootTemplate
+					<attribute id="Scale" type="float" value="10" /> Use this to shrink or enlarge your container
+					<attribute id="Stats" type="FixedString" value="CCO_OBJ_EpilogueCampClothingBackpack" /> 
+					<attribute id="Tooltip" type="uint8" value="2" />
+					<attribute id="TreasureOnDestroy" type="bool" value="True" />
+					<attribute id="Type" type="FixedString" value="item" />
+					<attribute id="_OriginalFileVersion_" type="int64" value="144115188075855912" />
+					<children>
+						<node id="GameMaster" />
+						<node id="InventoryList">
+							<children>
+								<node id="InventoryItem">
+									<attribute id="Object" type="FixedString" value="CCO_Epilogue_Camp_Clothing_Backpack" /> Points to TreasureTable.txt
+								</node>
+							</children>
+						</node>
+					</children>
+				</node>
+			</children>
+		</node>
+	</region>
+</save>			
