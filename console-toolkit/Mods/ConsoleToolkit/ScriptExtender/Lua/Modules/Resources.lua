@@ -14,8 +14,8 @@ end
 
 function ConsoleToolkit.resources.help()
   out("=== ConsoleToolkit.resources Commands ===")
-  out("ConsoleToolkit.resources.add_gold(<amount>, <character_uuid>)")
-  out("ConsoleToolkit.resources.add_tadpoles(<amount>, <character_uuid>)")
+  out("Mods.ConsoleToolkit.resources.add_gold(<amount>, <character_uuid>)")
+  out("Mods.ConsoleToolkit.resources.add_tadpoles(<amount>, <character_uuid>)")
   out("Tip: character_uuid defaults to GetHostCharacter(); gold amount defaults to 10000; tadpole amount defaults to 1.")
 end
 
@@ -35,4 +35,4 @@ function ConsoleToolkit.resources.add_tadpoles(amount, character_id)
   out(string.format("Done | added tadpoles=%d | target=%s", value, tostring(target)))
 end
 
-out("ConsoleToolkit.resources loaded. Run ConsoleToolkit.resources.help()")
+out("Mods.ConsoleToolkit.resources loaded. Run Mods.ConsoleToolkit.resources.help()")

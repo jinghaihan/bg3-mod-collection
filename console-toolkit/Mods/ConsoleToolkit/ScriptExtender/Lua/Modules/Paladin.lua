@@ -14,8 +14,8 @@ end
 
 function ConsoleToolkit.paladin.help()
   out("=== ConsoleToolkit.paladin Commands ===")
-  out("ConsoleToolkit.paladin.break_oath(<character_uuid>)")
-  out("ConsoleToolkit.paladin.redeem_oath(<character_uuid>)")
+  out("Mods.ConsoleToolkit.paladin.break_oath(<character_uuid>)")
+  out("Mods.ConsoleToolkit.paladin.redeem_oath(<character_uuid>)")
   out("Tip: character_uuid defaults to GetHostCharacter().")
 end
 
@@ -33,4 +33,4 @@ function ConsoleToolkit.paladin.redeem_oath(character_id)
   out(string.format("Done | redeemed paladin oath | target=%s", tostring(target)))
 end
 
-out("ConsoleToolkit.paladin loaded. Run ConsoleToolkit.paladin.help()")
+out("Mods.ConsoleToolkit.paladin loaded. Run Mods.ConsoleToolkit.paladin.help()")

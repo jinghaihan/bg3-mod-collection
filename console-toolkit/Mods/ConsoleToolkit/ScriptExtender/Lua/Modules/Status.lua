@@ -14,9 +14,9 @@ end
 
 function ConsoleToolkit.status.help()
   out("=== ConsoleToolkit.status Commands ===")
-  out("ConsoleToolkit.status.remove_enemy_of_justice(<character_uuid>)")
-  out("ConsoleToolkit.status.remove_enemy_of_justice_all_players()")
-  out("ConsoleToolkit.status.knock_out_alfira(<source_character_uuid>)")
+  out("Mods.ConsoleToolkit.status.remove_enemy_of_justice(<character_uuid>)")
+  out("Mods.ConsoleToolkit.status.remove_enemy_of_justice_all_players()")
+  out("Mods.ConsoleToolkit.status.knock_out_alfira(<source_character_uuid>)")
   out("Tip: character_uuid defaults to GetHostCharacter().")
 end
 
@@ -79,4 +79,4 @@ function ConsoleToolkit.status.knock_out_alfira(source_character_id)
   out(string.format("Done | applied KNOCKED_OUT to Alfira | alfira=%s | source=%s", tostring(alfira), tostring(source)))
 end
 
-out("ConsoleToolkit.status loaded. Run ConsoleToolkit.status.help()")
+out("Mods.ConsoleToolkit.status loaded. Run Mods.ConsoleToolkit.status.help()")

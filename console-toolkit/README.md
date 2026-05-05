@@ -50,22 +50,6 @@ Mods.ConsoleToolkit.teleport.help()
 Mods.ConsoleToolkit.paladin.help()
 ```
 
-You can also call the global table directly:
-
-```lua
-server
-
-ConsoleToolkit.help()
-ConsoleToolkit.inspiration.help()
-ConsoleToolkit.status.help()
-ConsoleToolkit.items.help()
-ConsoleToolkit.party.help()
-ConsoleToolkit.resources.help()
-ConsoleToolkit.character.help()
-ConsoleToolkit.teleport.help()
-ConsoleToolkit.paladin.help()
-```
-
 ## Inspiration Module
 
 `ConsoleToolkit.inspiration` provides utilities for inspecting and granting background inspiration goals.
@@ -100,35 +84,26 @@ Mods.ConsoleToolkit.inspiration.dump_missing_all_players()
 -- print blocked goals for every player character
 Mods.ConsoleToolkit.inspiration.dump_blocked_all_players()
 
--- dry run: show what would be granted for one character, no actual grant
-Mods.ConsoleToolkit.inspiration.grant_missing("<character_uuid>", true, 999999)
+-- preview what would be granted for one character, no actual grant
+Mods.ConsoleToolkit.inspiration.print_missing_grants("<character_uuid>", 999999)
 
 -- real grant for one character, optionally cap number of grants
-Mods.ConsoleToolkit.inspiration.grant_missing("<character_uuid>", false, 999999)
+Mods.ConsoleToolkit.inspiration.grant_missing("<character_uuid>", 999999)
 
--- dry run: show what would be granted while ignoring blocked state
-Mods.ConsoleToolkit.inspiration.grant_missing_ignore_blocked("<character_uuid>", true, 999999)
+-- preview what would be granted while ignoring blocked state
+Mods.ConsoleToolkit.inspiration.print_missing_grants_ignore_blocked("<character_uuid>", 999999)
 
 -- real grant while ignoring blocked state
-Mods.ConsoleToolkit.inspiration.grant_missing_ignore_blocked("<character_uuid>", false, 999999)
+Mods.ConsoleToolkit.inspiration.grant_missing_ignore_blocked("<character_uuid>", 999999)
 
--- dry run: show grants for all players, no actual grant
-Mods.ConsoleToolkit.inspiration.grant_missing_all_players(true)
+-- preview grants for all players, no actual grant
+Mods.ConsoleToolkit.inspiration.print_missing_grants_all_players()
 
 -- real grant for all players
-Mods.ConsoleToolkit.inspiration.grant_missing_all_players(false)
+Mods.ConsoleToolkit.inspiration.grant_missing_all_players()
 
 -- real grant for all players while ignoring blocked state
-Mods.ConsoleToolkit.inspiration.grant_missing_ignore_blocked_all_players(false)
-```
-
-For compatibility with the old mod name, `InspirationConsole` is still available as an alias for `ConsoleToolkit.inspiration`.
-
-```lua
-server
-
-InspirationConsole.help()
-InspirationConsole.dump_all_goals()
+Mods.ConsoleToolkit.inspiration.grant_missing_ignore_blocked_all_players()
 ```
 
 ## Native Osiris API
@@ -330,5 +305,5 @@ Mods.ConsoleToolkit.paladin.redeem_oath()
 
 - `grant_missing_*` checks background match and skips completed/blocked goals.
 - `grant_missing_ignore_blocked*` checks background match and skips completed goals, but does not skip goals in `DB_GLO_Backgrounds_Blocked`.
-- Start with `dry_run=true` before real grants.
+- Use `print_missing_grants*` to preview before calling `grant_missing*`.
 - The checked-in source has been renamed to `ConsoleToolkit`; build a fresh `.pak` before installing if you need a packed release.

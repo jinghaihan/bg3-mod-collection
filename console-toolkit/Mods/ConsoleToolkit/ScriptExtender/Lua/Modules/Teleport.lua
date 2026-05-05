@@ -14,8 +14,8 @@ end
 
 function ConsoleToolkit.teleport.help()
   out("=== ConsoleToolkit.teleport Commands ===")
-  out("ConsoleToolkit.teleport.to_host(<character_uuid>)")
-  out("ConsoleToolkit.teleport.companions_to_host()")
+  out("Mods.ConsoleToolkit.teleport.to_host(<character_uuid>)")
+  out("Mods.ConsoleToolkit.teleport.companions_to_host()")
   out("Tip: companion teleports use constants.companion_uuids and skip the current host character.")
 end
 
@@ -42,4 +42,4 @@ function ConsoleToolkit.teleport.companions_to_host()
   out(string.format("Done | teleported companions to host | host=%s | touched=%d", tostring(host), teleported))
 end
 
-out("ConsoleToolkit.teleport loaded. Run ConsoleToolkit.teleport.help()")
+out("Mods.ConsoleToolkit.teleport loaded. Run Mods.ConsoleToolkit.teleport.help()")

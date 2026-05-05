@@ -13,29 +13,8 @@ function ConsoleToolkit.out(msg)
   end
 end
 
-function ConsoleToolkit.help()
+local function toolkit_help()
   ConsoleToolkit.out("=== ConsoleToolkit Modules ===")
-  ConsoleToolkit.out("ConsoleToolkit.help()")
-  ConsoleToolkit.out("ConsoleToolkit.inspiration.help()")
-  ConsoleToolkit.out("ConsoleToolkit.status.help()")
-  ConsoleToolkit.out("ConsoleToolkit.items.help()")
-  ConsoleToolkit.out("ConsoleToolkit.party.help()")
-  ConsoleToolkit.out("ConsoleToolkit.resources.help()")
-  ConsoleToolkit.out("ConsoleToolkit.character.help()")
-  ConsoleToolkit.out("ConsoleToolkit.teleport.help()")
-  ConsoleToolkit.out("ConsoleToolkit.paladin.help()")
-  ConsoleToolkit.out("")
-  ConsoleToolkit.out("When calling through the mod table, use:")
-  ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.help()")
-  ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.inspiration.help()")
-  ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.status.help()")
-  ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.items.help()")
-  ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.party.help()")
-  ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.resources.help()")
-  ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.character.help()")
-  ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.teleport.help()")
-  ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.paladin.help()")
-  ConsoleToolkit.out("Short aliases are also exposed as:")
   ConsoleToolkit.out("Mods.ConsoleToolkit.help()")
   ConsoleToolkit.out("Mods.ConsoleToolkit.inspiration.help()")
   ConsoleToolkit.out("Mods.ConsoleToolkit.status.help()")
@@ -47,7 +26,7 @@ function ConsoleToolkit.help()
   ConsoleToolkit.out("Mods.ConsoleToolkit.paladin.help()")
 end
 
--- Short aliases for Script Extender console calls through Mods.ConsoleToolkit.*.
-help = ConsoleToolkit.help
+-- Short alias for Script Extender console calls.
+help = toolkit_help
 
-ConsoleToolkit.out("ConsoleToolkit core loaded. Run ConsoleToolkit.help()")
+ConsoleToolkit.out("ConsoleToolkit core loaded. Run Mods.ConsoleToolkit.help()")

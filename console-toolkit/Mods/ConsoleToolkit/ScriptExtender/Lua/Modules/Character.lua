@@ -19,9 +19,9 @@ end
 
 function ConsoleToolkit.character.help()
   out("=== ConsoleToolkit.character Commands ===")
-  out("ConsoleToolkit.character.change_approval(<amount>, <companion_uuid>)")
-  out("ConsoleToolkit.character.start_change_appearance(<character_uuid>)")
-  out("ConsoleToolkit.character.start_respec(<character_uuid>)")
+  out("Mods.ConsoleToolkit.character.change_approval(<amount>, <companion_uuid>)")
+  out("Mods.ConsoleToolkit.character.start_change_appearance(<character_uuid>)")
+  out("Mods.ConsoleToolkit.character.start_respec(<character_uuid>)")
   out("Tip: change_approval amount defaults to 10; omit companion_uuid to apply to all constants.companions.")
   out("Tip: appearance/respec character_uuid defaults to GetHostCharacter().")
 end
@@ -62,4 +62,4 @@ function ConsoleToolkit.character.start_respec(character_id)
   out(string.format("Done | started respec | target=%s", tostring(target)))
 end
 
-out("ConsoleToolkit.character loaded. Run ConsoleToolkit.character.help()")
+out("Mods.ConsoleToolkit.character loaded. Run Mods.ConsoleToolkit.character.help()")

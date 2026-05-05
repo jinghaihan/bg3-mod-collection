@@ -361,13 +361,13 @@ end
 
 function ConsoleToolkit.items.help()
   out("=== ConsoleToolkit.items Commands ===")
-  out("ConsoleToolkit.items.grant_prologue_camp_clothing(<character_uuid>, <dry_run>, <show_notification>)")
-  out("ConsoleToolkit.items.grant_epilogue_camp_clothing(<character_uuid>, <dry_run>, <show_notification>)")
-  out("ConsoleToolkit.items.grant_digital_deluxe_clothing(<character_uuid>, <dry_run>, <show_notification>)")
-  out("ConsoleToolkit.items.grant_twitch_clothing(<character_uuid>, <dry_run>, <show_notification>)")
-  out("ConsoleToolkit.items.grant_scrolls(<count>, <character_uuid>, <dry_run>, <show_notification>)")
-  out("ConsoleToolkit.items.grant_arrows(<count>, <character_uuid>, <dry_run>, <show_notification>)")
-  out("ConsoleToolkit.items.grant_dyes(<count>, <remover_count>, <character_uuid>, <dry_run>, <show_notification>)")
+  out("Mods.ConsoleToolkit.items.grant_prologue_camp_clothing(<character_uuid>, <dry_run>, <show_notification>)")
+  out("Mods.ConsoleToolkit.items.grant_epilogue_camp_clothing(<character_uuid>, <dry_run>, <show_notification>)")
+  out("Mods.ConsoleToolkit.items.grant_digital_deluxe_clothing(<character_uuid>, <dry_run>, <show_notification>)")
+  out("Mods.ConsoleToolkit.items.grant_twitch_clothing(<character_uuid>, <dry_run>, <show_notification>)")
+  out("Mods.ConsoleToolkit.items.grant_scrolls(<count>, <character_uuid>, <dry_run>, <show_notification>)")
+  out("Mods.ConsoleToolkit.items.grant_arrows(<count>, <character_uuid>, <dry_run>, <show_notification>)")
+  out("Mods.ConsoleToolkit.items.grant_dyes(<count>, <remover_count>, <character_uuid>, <dry_run>, <show_notification>)")
   out("Tip: character_uuid defaults to GetHostCharacter(); dry_run defaults to false; show_notification defaults to 1.")
   out("Default counts: scrolls=1, arrows=50, dyes=10, dye remover=20.")
 end
@@ -400,4 +400,4 @@ function ConsoleToolkit.items.grant_dyes(count, remover_count, character_id, dry
   grant_templates("Dyes", dye_templates(count, remover_count), character_id, dry_run, show_notification)
 end
 
-out("ConsoleToolkit.items loaded. Run ConsoleToolkit.items.help()")
+out("Mods.ConsoleToolkit.items loaded. Run Mods.ConsoleToolkit.items.help()")

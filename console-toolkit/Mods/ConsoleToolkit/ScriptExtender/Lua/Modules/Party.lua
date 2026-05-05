@@ -18,7 +18,7 @@ end
 
 function ConsoleToolkit.party.help()
   out("=== ConsoleToolkit.party Commands ===")
-  out("ConsoleToolkit.party.fix_jaheira_party_member(<host_character_uuid>)")
+  out("Mods.ConsoleToolkit.party.fix_jaheira_party_member(<host_character_uuid>)")
   out("Tip: host_character_uuid defaults to GetHostCharacter().")
 end
 
@@ -36,4 +36,4 @@ function ConsoleToolkit.party.fix_jaheira_party_member(host_character_id)
   ))
 end
 
-out("ConsoleToolkit.party loaded. Run ConsoleToolkit.party.help()")
+out("Mods.ConsoleToolkit.party loaded. Run Mods.ConsoleToolkit.party.help()")
