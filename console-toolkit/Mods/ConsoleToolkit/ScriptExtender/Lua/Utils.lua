@@ -23,3 +23,20 @@ function ConsoleToolkit.utils.player_ids()
 
   return ids
 end
+
+function ConsoleToolkit.utils.number_or_default(value, default_value)
+  local number = tonumber(value)
+  if number == nil then
+    return default_value
+  end
+  return number
+end
+
+function ConsoleToolkit.utils.integer_or_default(value, default_value)
+  local number = ConsoleToolkit.utils.number_or_default(value, default_value)
+  return math.floor(number)
+end
+
+function ConsoleToolkit.utils.character_or_host(character_id)
+  return character_id or GetHostCharacter()
+end

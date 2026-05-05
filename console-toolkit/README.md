@@ -13,7 +13,12 @@ The goal is to keep reusable console utilities in one mod instead of creating a 
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Status.lua`: status and crime-state helper module.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Items.lua`: item and equipment helper module.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Party.lua`: party and companion-state helper module.
+- `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Resources.lua`: gold and tadpole helper module.
+- `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Character.lua`: approval, appearance, and respec helper module.
+- `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Teleport.lua`: teleport helper module.
+- `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Paladin.lua`: paladin oath helper module.
 - `Public/ConsoleToolkit/Stats/Generated/Data/Armor.txt`: camp clothing stat entries used by the item module.
+- `Public/ConsoleToolkit/Stats/Generated/Data/Object.txt`: extra object stat entries used by the item module.
 - `inspiration_goals.csv`: full inspiration goal list snapshot, sorted by background.
 
 ## Console Usage
@@ -37,6 +42,12 @@ Mods.ConsoleToolkit.items.help()
 
 -- show party module commands
 Mods.ConsoleToolkit.party.help()
+
+-- show resource, character, teleport, and paladin helper commands
+Mods.ConsoleToolkit.resources.help()
+Mods.ConsoleToolkit.character.help()
+Mods.ConsoleToolkit.teleport.help()
+Mods.ConsoleToolkit.paladin.help()
 ```
 
 You can also call the global table directly:
@@ -49,6 +60,10 @@ ConsoleToolkit.inspiration.help()
 ConsoleToolkit.status.help()
 ConsoleToolkit.items.help()
 ConsoleToolkit.party.help()
+ConsoleToolkit.resources.help()
+ConsoleToolkit.character.help()
+ConsoleToolkit.teleport.help()
+ConsoleToolkit.paladin.help()
 ```
 
 ## Inspiration Module
@@ -146,6 +161,9 @@ Mods.ConsoleToolkit.status.remove_enemy_of_justice("<character_uuid>")
 -- remove Enemy of Justice from every character listed in DB_Players,
 -- while suspending and clearing guard-killer crime records once
 Mods.ConsoleToolkit.status.remove_enemy_of_justice_all_players()
+
+-- apply KNOCKED_OUT to Alfira, using the host character as the source
+Mods.ConsoleToolkit.status.knock_out_alfira()
 ```
 
 ## Items Module
@@ -176,6 +194,20 @@ Mods.ConsoleToolkit.items.grant_digital_deluxe_clothing("<character_uuid>", true
 Mods.ConsoleToolkit.items.grant_prologue_camp_clothing("<character_uuid>", false)
 Mods.ConsoleToolkit.items.grant_epilogue_camp_clothing("<character_uuid>", false)
 Mods.ConsoleToolkit.items.grant_digital_deluxe_clothing("<character_uuid>", false)
+
+-- add one of every collected scroll to the host character
+Mods.ConsoleToolkit.items.grant_scrolls()
+
+-- add 50 of every collected arrow to the host character
+Mods.ConsoleToolkit.items.grant_arrows()
+
+-- add 10 of every collected dye and 20 dye removers to the host character
+Mods.ConsoleToolkit.items.grant_dyes()
+
+-- custom quantities
+Mods.ConsoleToolkit.items.grant_scrolls(3)
+Mods.ConsoleToolkit.items.grant_arrows(100)
+Mods.ConsoleToolkit.items.grant_dyes(20, 40)
 ```
 
 The prologue set uses original game item templates directly. The epilogue and digital deluxe sets use the armor stat entries copied from the companion camp outfit data; this module does not include the old custom backpack objects or any `TUT_Chest_Potions` treasure-table merge.
@@ -204,6 +236,77 @@ local jaheira = Mods.ConsoleToolkit.constants.companions.JAHEIRA
 local host = GetHostCharacter()
 Osi.PROC_GLO_PartyMembers_Remove(jaheira, host, 0)
 Osi.PROC_Hirelings_AddToParty(jaheira, host)
+```
+
+## Resources Module
+
+`ConsoleToolkit.resources` provides thin wrappers around resource-related Osiris APIs.
+
+```lua
+server
+
+-- add 10000 gold to the host character
+Mods.ConsoleToolkit.resources.add_gold()
+
+-- add a custom amount of gold to the host character
+Mods.ConsoleToolkit.resources.add_gold(50000)
+
+-- add one tadpole to the host character
+Mods.ConsoleToolkit.resources.add_tadpoles()
+
+-- add a custom amount of tadpoles to the host character
+Mods.ConsoleToolkit.resources.add_tadpoles(5)
+```
+
+## Character Module
+
+`ConsoleToolkit.character` provides thin wrappers for approval, appearance, and respec actions.
+
+```lua
+server
+
+-- add 10 approval with every companion constant toward the host character
+Mods.ConsoleToolkit.character.change_approval()
+
+-- add 100 approval with every companion constant toward the host character
+Mods.ConsoleToolkit.character.change_approval(100)
+
+-- add 10 approval with one specific companion toward the host character
+Mods.ConsoleToolkit.character.change_approval(10, Mods.ConsoleToolkit.constants.companions.SHADOWHEART)
+
+-- open the change appearance flow for the host character
+Mods.ConsoleToolkit.character.start_change_appearance()
+
+-- open the respec flow for the host character
+Mods.ConsoleToolkit.character.start_respec()
+```
+
+## Teleport Module
+
+`ConsoleToolkit.teleport` provides convenience wrappers for moving companions to the host character.
+
+```lua
+server
+
+-- teleport one character to the host character
+Mods.ConsoleToolkit.teleport.to_host("3ed74f06-3c60-42dc-83f6-f034cb47c679")
+
+-- teleport all companion constants to the host character
+Mods.ConsoleToolkit.teleport.companions_to_host()
+```
+
+## Paladin Module
+
+`ConsoleToolkit.paladin` provides thin wrappers around paladin oath APIs.
+
+```lua
+server
+
+-- break the host character's paladin oath
+Mods.ConsoleToolkit.paladin.break_oath()
+
+-- restore the host character's paladin oath
+Mods.ConsoleToolkit.paladin.redeem_oath()
 ```
 
 ## Background Summary

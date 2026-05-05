@@ -16,6 +16,7 @@ function ConsoleToolkit.status.help()
   out("=== ConsoleToolkit.status Commands ===")
   out("ConsoleToolkit.status.remove_enemy_of_justice(<character_uuid>)")
   out("ConsoleToolkit.status.remove_enemy_of_justice_all_players()")
+  out("ConsoleToolkit.status.knock_out_alfira(<source_character_uuid>)")
   out("Tip: character_uuid defaults to GetHostCharacter().")
 end
 
@@ -68,6 +69,14 @@ function ConsoleToolkit.status.remove_enemy_of_justice_all_players()
     "Done | removed GB_GUARDKILLER from all DB_Players characters | suspended_crimes=%d | cleared DB_CRIME_GuardKiller",
     suspended
   ))
+end
+
+function ConsoleToolkit.status.knock_out_alfira(source_character_id)
+  local source = ConsoleToolkit.utils.character_or_host(source_character_id)
+  local alfira = ConsoleToolkit.constants.npcs.ALFIRA
+
+  ApplyStatus(alfira, "KNOCKED_OUT", -1, 1, source)
+  out(string.format("Done | applied KNOCKED_OUT to Alfira | alfira=%s | source=%s", tostring(alfira), tostring(source)))
 end
 
 out("ConsoleToolkit.status loaded. Run ConsoleToolkit.status.help()")
