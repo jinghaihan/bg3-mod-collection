@@ -181,6 +181,8 @@ function ConsoleToolkit.inspiration.help()
   out("Mods.ConsoleToolkit.inspiration.print_missing_grants_ignore_blocked(<character_uuid>, <max_count>)")
   out("Mods.ConsoleToolkit.inspiration.print_missing_grants_all_players(<max_count_per_player>)")
   out("Mods.ConsoleToolkit.inspiration.print_missing_grants_ignore_blocked_all_players(<max_count_per_player>)")
+  out("Mods.ConsoleToolkit.inspiration.complete_goal(<character_uuid>, <goal_string>)")
+  out("Mods.ConsoleToolkit.inspiration.complete_goal_ignore_blocked(<character_uuid>, <goal_string>)")
   out("Mods.ConsoleToolkit.inspiration.grant_missing(<character_uuid>, <max_count>)")
   out("Mods.ConsoleToolkit.inspiration.grant_missing_ignore_blocked(<character_uuid>, <max_count>)")
   out("Mods.ConsoleToolkit.inspiration.grant_missing_all_players(<max_count_per_player>)")
@@ -328,16 +330,33 @@ local function print_grants_for_character(character_id, ignore_blocked, max_coun
   ))
 end
 
+local function complete_goal_for_character(character_id, goal_string, ignore_blocked)
+  if goal_string == nil then
+    out("[WARN] goal_string is required")
+    return false
+  end
+
+  if ignore_blocked and blocked_set()[goal_string] then
+    delete_blocked_goal(goal_string)
+  end
+
+  Osi.PROC_GLO_Backgrounds_CompleteGoal(character_id, goal_string)
+
+  if ignore_blocked then
+    out(string.format("[OK][IGNORE_BLOCKED] completed %s for %s", tostring(goal_string), tostring(character_id)))
+  else
+    out(string.format("[OK] completed %s for %s", tostring(goal_string), tostring(character_id)))
+  end
+
+  return true
+end
+
 local function grant_goals_for_character(character_id, ignore_blocked, max_count)
   if max_count == nil then
     max_count = 999999
   end
 
   local missing = missing_goals_for_character(character_id, ignore_blocked)
-  local blocked = {}
-  if ignore_blocked then
-    blocked = blocked_set()
-  end
   local granted = 0
 
   for _, item in ipairs(missing) do
@@ -345,18 +364,7 @@ local function grant_goals_for_character(character_id, ignore_blocked, max_count
       break
     end
 
-    if ignore_blocked and blocked[item.goal_string] then
-      delete_blocked_goal(item.goal_string)
-      blocked[item.goal_string] = nil
-    end
-
-    Osi.PROC_GLO_Backgrounds_CompleteGoal(character_id, item.goal_string)
-
-    if ignore_blocked then
-      out(string.format("[OK][IGNORE_BLOCKED] granted %s to %s", item.goal_string, tostring(character_id)))
-    else
-      out(string.format("[OK] granted %s to %s", item.goal_string, tostring(character_id)))
-    end
+    complete_goal_for_character(character_id, item.goal_string, ignore_blocked)
 
     granted = granted + 1
   end
@@ -387,6 +395,14 @@ function ConsoleToolkit.inspiration.print_missing_grants_ignore_blocked_all_play
   for _, id in ipairs(ConsoleToolkit.utils.player_ids()) do
     ConsoleToolkit.inspiration.print_missing_grants_ignore_blocked(id, max_count_per_player)
   end
+end
+
+function ConsoleToolkit.inspiration.complete_goal(character_id, goal_string)
+  complete_goal_for_character(character_id, goal_string, false)
+end
+
+function ConsoleToolkit.inspiration.complete_goal_ignore_blocked(character_id, goal_string)
+  complete_goal_for_character(character_id, goal_string, true)
 end
 
 function ConsoleToolkit.inspiration.grant_missing(character_id, max_count)

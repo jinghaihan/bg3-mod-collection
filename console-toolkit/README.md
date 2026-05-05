@@ -93,6 +93,12 @@ Mods.ConsoleToolkit.inspiration.grant_missing("<character_uuid>", 999999)
 -- preview what would be granted while ignoring blocked state
 Mods.ConsoleToolkit.inspiration.print_missing_grants_ignore_blocked("<character_uuid>", 999999)
 
+-- complete one exact goal for one character
+Mods.ConsoleToolkit.inspiration.complete_goal("<character_uuid>", "Act1_Sage_GaleResurrection")
+
+-- complete one exact goal after removing its blocked DB row if needed
+Mods.ConsoleToolkit.inspiration.complete_goal_ignore_blocked("<character_uuid>", "Act1_Sage_GaleResurrection")
+
 -- real grant while ignoring blocked state
 Mods.ConsoleToolkit.inspiration.grant_missing_ignore_blocked("<character_uuid>", 999999)
 
@@ -305,5 +311,6 @@ Mods.ConsoleToolkit.paladin.redeem_oath()
 
 - `grant_missing_*` checks background match and skips completed/blocked goals.
 - `print_missing_grants*` only prints what would be granted and never changes game state.
+- `complete_goal_ignore_blocked` is the single-goal wrapper for `Osi.PROC_GLO_Backgrounds_CompleteGoal`. It deletes that goal's blocked DB row first if needed.
 - `grant_missing_ignore_blocked*` checks background match and skips completed goals. If a goal is in `DB_GLO_Backgrounds_Blocked`, it deletes that blocked DB row before calling `Osi.PROC_GLO_Backgrounds_CompleteGoal`.
 - The checked-in source has been renamed to `ConsoleToolkit`; build a fresh `.pak` before installing if you need a packed release.
