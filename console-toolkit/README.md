@@ -304,6 +304,6 @@ Mods.ConsoleToolkit.paladin.redeem_oath()
 ## Notes
 
 - `grant_missing_*` checks background match and skips completed/blocked goals.
-- `grant_missing_ignore_blocked*` checks background match and skips completed goals, but does not skip goals in `DB_GLO_Backgrounds_Blocked`.
-- Use `print_missing_grants*` to preview before calling `grant_missing*`.
+- `print_missing_grants*` only prints what would be granted and never changes game state.
+- `grant_missing_ignore_blocked*` checks background match and skips completed goals. If a goal is in `DB_GLO_Backgrounds_Blocked`, it deletes that blocked DB row before calling `Osi.PROC_GLO_Backgrounds_CompleteGoal`.
 - The checked-in source has been renamed to `ConsoleToolkit`; build a fresh `.pak` before installing if you need a packed release.

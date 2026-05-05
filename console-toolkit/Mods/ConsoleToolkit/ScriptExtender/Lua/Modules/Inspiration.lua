@@ -49,6 +49,27 @@ local function blocked_set()
   return set
 end
 
+local function delete_blocked_goal(goal_string)
+  local ok, err = pcall(function()
+    Osi.DB_GLO_Backgrounds_Blocked:Delete(goal_string)
+  end)
+
+  if not ok then
+    out(string.format(
+      "[WARN][IGNORE_BLOCKED] failed to delete %s from DB_GLO_Backgrounds_Blocked: %s",
+      tostring(goal_string),
+      tostring(err)
+    ))
+    return false
+  end
+
+  out(string.format(
+    "[OK][IGNORE_BLOCKED] deleted %s from DB_GLO_Backgrounds_Blocked",
+    tostring(goal_string)
+  ))
+  return true
+end
+
 local function all_background_goals()
   return ConsoleToolkit.utils.safe_rows(function()
     return Osi.DB_GLO_Backgrounds_Goal:Get(nil, nil, nil, nil)
@@ -313,11 +334,20 @@ local function grant_goals_for_character(character_id, ignore_blocked, max_count
   end
 
   local missing = missing_goals_for_character(character_id, ignore_blocked)
+  local blocked = {}
+  if ignore_blocked then
+    blocked = blocked_set()
+  end
   local granted = 0
 
   for _, item in ipairs(missing) do
     if granted >= max_count then
       break
+    end
+
+    if ignore_blocked and blocked[item.goal_string] then
+      delete_blocked_goal(item.goal_string)
+      blocked[item.goal_string] = nil
     end
 
     Osi.PROC_GLO_Backgrounds_CompleteGoal(character_id, item.goal_string)
