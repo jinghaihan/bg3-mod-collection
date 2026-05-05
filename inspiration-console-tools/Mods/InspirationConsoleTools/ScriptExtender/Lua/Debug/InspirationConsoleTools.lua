@@ -128,7 +128,7 @@ local function blocked_goals_for_character(character_id)
   return result
 end
 
-local function missing_goals_for_character(character_id)
+local function missing_goals_for_character(character_id, ignore_blocked)
   local result = {}
   local tags = background_tags_for_character(character_id)
   local tag_set = {}
@@ -137,7 +137,10 @@ local function missing_goals_for_character(character_id)
   end
 
   local completed = completed_set_for_character(character_id)
-  local blocked = blocked_set()
+  local blocked = {}
+  if not ignore_blocked then
+    blocked = blocked_set()
+  end
 
   for _, row in ipairs(all_background_goals()) do
     local bg_tag = row[1]
@@ -168,11 +171,14 @@ function InspirationConsole.help()
   out("InspirationConsole.dump_blocked_all()")
   out("InspirationConsole.dump_players()")
   out("InspirationConsole.dump_missing(<character_uuid>)")
+  out("InspirationConsole.dump_missing_ignore_blocked(<character_uuid>)")
   out("InspirationConsole.dump_blocked(<character_uuid>)")
   out("InspirationConsole.dump_missing_all_players()")
   out("InspirationConsole.dump_blocked_all_players()")
   out("InspirationConsole.grant_missing(<character_uuid>, <dry_run>, <max_count>)")
+  out("InspirationConsole.grant_missing_ignore_blocked(<character_uuid>, <dry_run>, <max_count>)")
   out("InspirationConsole.grant_missing_all_players(<dry_run>, <max_count_per_player>)")
+  out("InspirationConsole.grant_missing_ignore_blocked_all_players(<dry_run>, <max_count_per_player>)")
   out("InspirationConsole.dump_all_goals_csv()")
   out("Tip: dry_run defaults to true. Pass false to actually grant goals.")
 end
@@ -232,6 +238,21 @@ end
 function InspirationConsole.dump_missing(character_id)
   local missing = missing_goals_for_character(character_id)
   out(string.format("Missing goals for %s: %d", tostring(character_id), #missing))
+  for i, item in ipairs(missing) do
+    out(string.format(
+      "%03d | bgTag=%s | goalString=%s | goalUUID=%s | scope=%s",
+      i,
+      tostring(item.background_tag),
+      tostring(item.goal_string),
+      tostring(item.goal_uuid),
+      tostring(item.scope)
+    ))
+  end
+end
+
+function InspirationConsole.dump_missing_ignore_blocked(character_id)
+  local missing = missing_goals_for_character(character_id, true)
+  out(string.format("Missing goals for %s, ignoring blocked state: %d", tostring(character_id), #missing))
   for i, item in ipairs(missing) do
     out(string.format(
       "%03d | bgTag=%s | goalString=%s | goalUUID=%s | scope=%s",
@@ -305,9 +326,49 @@ function InspirationConsole.grant_missing(character_id, dry_run, max_count)
   ))
 end
 
+function InspirationConsole.grant_missing_ignore_blocked(character_id, dry_run, max_count)
+  if dry_run == nil then
+    dry_run = true
+  end
+  if max_count == nil then
+    max_count = 999999
+  end
+
+  local missing = missing_goals_for_character(character_id, true)
+  local granted = 0
+
+  for _, item in ipairs(missing) do
+    if granted >= max_count then
+      break
+    end
+
+    if dry_run then
+      out(string.format("[DRY][IGNORE_BLOCKED] would grant %s to %s", item.goal_string, tostring(character_id)))
+    else
+      Osi.PROC_GLO_Backgrounds_CompleteGoal(character_id, item.goal_string)
+      out(string.format("[OK][IGNORE_BLOCKED] granted %s to %s", item.goal_string, tostring(character_id)))
+    end
+
+    granted = granted + 1
+  end
+
+  out(string.format(
+    "Done for %s | dry_run=%s | ignore_blocked=true | touched=%d",
+    tostring(character_id),
+    tostring(dry_run),
+    granted
+  ))
+end
+
 function InspirationConsole.grant_missing_all_players(dry_run, max_count_per_player)
   for _, id in ipairs(player_ids()) do
     InspirationConsole.grant_missing(id, dry_run, max_count_per_player)
+  end
+end
+
+function InspirationConsole.grant_missing_ignore_blocked_all_players(dry_run, max_count_per_player)
+  for _, id in ipairs(player_ids()) do
+    InspirationConsole.grant_missing_ignore_blocked(id, dry_run, max_count_per_player)
   end
 end
 
