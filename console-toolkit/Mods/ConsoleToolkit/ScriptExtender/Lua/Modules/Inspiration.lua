@@ -17,29 +17,9 @@ local function out(msg)
   ConsoleToolkit.out(msg)
 end
 
-local function safe_rows(db_get)
-  local ok, rows = pcall(db_get)
-  if ok and rows then
-    return rows
-  end
-  return {}
-end
-
-local function player_ids()
-  local ids = {}
-  local rows = safe_rows(function()
-    return Osi.DB_Players:Get(nil)
-  end)
-
-  for _, row in ipairs(rows) do
-    ids[#ids + 1] = row[1]
-  end
-  return ids
-end
-
 local function background_tags_for_character(character_id)
   local tags = {}
-  local rows = safe_rows(function()
+  local rows = ConsoleToolkit.utils.safe_rows(function()
     return Osi.DB_GLO_Backgrounds_Players:Get(character_id, nil)
   end)
   for _, row in ipairs(rows) do
@@ -50,7 +30,7 @@ end
 
 local function completed_set_for_character(character_id)
   local set = {}
-  local rows = safe_rows(function()
+  local rows = ConsoleToolkit.utils.safe_rows(function()
     return Osi.DB_GLO_Backgrounds_Completed:Get(character_id, nil)
   end)
   for _, row in ipairs(rows) do
@@ -61,7 +41,7 @@ end
 
 local function blocked_set()
   local set = {}
-  local rows = safe_rows(function()
+  local rows = ConsoleToolkit.utils.safe_rows(function()
     return Osi.DB_GLO_Backgrounds_Blocked:Get(nil)
   end)
   for _, row in ipairs(rows) do
@@ -71,7 +51,7 @@ local function blocked_set()
 end
 
 local function all_background_goals()
-  return safe_rows(function()
+  return ConsoleToolkit.utils.safe_rows(function()
     return Osi.DB_GLO_Backgrounds_Goal:Get(nil, nil, nil, nil)
   end)
 end
@@ -230,7 +210,7 @@ function ConsoleToolkit.inspiration.dump_all_goals_csv()
 end
 
 function ConsoleToolkit.inspiration.dump_players()
-  local ids = player_ids()
+  local ids = ConsoleToolkit.utils.player_ids()
   out(string.format("Total DB_Players rows: %d", #ids))
   for i, id in ipairs(ids) do
     out(string.format("%02d | %s", i, tostring(id)))
@@ -283,13 +263,13 @@ function ConsoleToolkit.inspiration.dump_blocked(character_id)
 end
 
 function ConsoleToolkit.inspiration.dump_missing_all_players()
-  for _, id in ipairs(player_ids()) do
+  for _, id in ipairs(ConsoleToolkit.utils.player_ids()) do
     ConsoleToolkit.inspiration.dump_missing(id)
   end
 end
 
 function ConsoleToolkit.inspiration.dump_blocked_all_players()
-  for _, id in ipairs(player_ids()) do
+  for _, id in ipairs(ConsoleToolkit.utils.player_ids()) do
     ConsoleToolkit.inspiration.dump_blocked(id)
   end
 end
@@ -363,13 +343,13 @@ function ConsoleToolkit.inspiration.grant_missing_ignore_blocked(character_id, d
 end
 
 function ConsoleToolkit.inspiration.grant_missing_all_players(dry_run, max_count_per_player)
-  for _, id in ipairs(player_ids()) do
+  for _, id in ipairs(ConsoleToolkit.utils.player_ids()) do
     ConsoleToolkit.inspiration.grant_missing(id, dry_run, max_count_per_player)
   end
 end
 
 function ConsoleToolkit.inspiration.grant_missing_ignore_blocked_all_players(dry_run, max_count_per_player)
-  for _, id in ipairs(player_ids()) do
+  for _, id in ipairs(ConsoleToolkit.utils.player_ids()) do
     ConsoleToolkit.inspiration.grant_missing_ignore_blocked(id, dry_run, max_count_per_player)
   end
 end

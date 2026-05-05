@@ -17,13 +17,16 @@ function ConsoleToolkit.help()
   ConsoleToolkit.out("=== ConsoleToolkit Modules ===")
   ConsoleToolkit.out("ConsoleToolkit.help()")
   ConsoleToolkit.out("ConsoleToolkit.inspiration.help()")
+  ConsoleToolkit.out("ConsoleToolkit.status.help()")
   ConsoleToolkit.out("")
   ConsoleToolkit.out("When calling through the mod table, use:")
   ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.help()")
   ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.inspiration.help()")
+  ConsoleToolkit.out("Mods.ConsoleToolkit.ConsoleToolkit.status.help()")
   ConsoleToolkit.out("Short aliases are also exposed as:")
   ConsoleToolkit.out("Mods.ConsoleToolkit.help()")
   ConsoleToolkit.out("Mods.ConsoleToolkit.inspiration.help()")
+  ConsoleToolkit.out("Mods.ConsoleToolkit.status.help()")
 end
 
 -- Short aliases for Script Extender console calls through Mods.ConsoleToolkit.*.

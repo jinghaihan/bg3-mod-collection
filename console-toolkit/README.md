@@ -9,6 +9,7 @@ The goal is to keep reusable console utilities in one mod instead of creating a 
 - `Mods/ConsoleToolkit/`: the mod package.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/ConsoleToolkit.lua`: shared bootstrap and top-level helper commands.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Inspiration.lua`: background inspiration helper module.
+- `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Status.lua`: status and crime-state helper module.
 - `inspiration_goals.csv`: full inspiration goal list snapshot, sorted by background.
 
 ## Console Usage
@@ -23,6 +24,9 @@ Mods.ConsoleToolkit.help()
 
 -- show inspiration module commands
 Mods.ConsoleToolkit.inspiration.help()
+
+-- show status module commands
+Mods.ConsoleToolkit.status.help()
 ```
 
 You can also call the global table directly:
@@ -32,6 +36,7 @@ server
 
 ConsoleToolkit.help()
 ConsoleToolkit.inspiration.help()
+ConsoleToolkit.status.help()
 ```
 
 ## Inspiration Module
@@ -111,6 +116,25 @@ Osi.PROC_GLO_Backgrounds_CompleteGoal(GetHostCharacter(), goal_string)
 ```
 
 `GetHostCharacter()` targets the host/player character. Replace it with another character UUID if you want to grant the inspiration goal to a specific character.
+
+## Status Module
+
+`ConsoleToolkit.status` provides manual status and crime-state cleanup helpers. These functions do not register automatic listeners; they only run when you call them from the Script Extender console.
+
+```lua
+server
+
+-- remove Enemy of Justice from the host character, suspend guard-killer crimes,
+-- and clear DB_CRIME_GuardKiller records
+Mods.ConsoleToolkit.status.remove_enemy_of_justice()
+
+-- same cleanup, but target a specific character ID for the status removal
+Mods.ConsoleToolkit.status.remove_enemy_of_justice("<character_uuid>")
+
+-- remove Enemy of Justice from every character listed in DB_Players,
+-- while suspending and clearing guard-killer crime records once
+Mods.ConsoleToolkit.status.remove_enemy_of_justice_all_players()
+```
 
 ## Background Summary
 
