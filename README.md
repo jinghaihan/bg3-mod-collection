@@ -14,6 +14,10 @@ Automatically restores companion approval ratings when they drop, allowing you t
 
 Automatically removes the "Enemy of Justice" status effect, which is an annoying and unsolvable debuff that can ruin your gameplay experience. This mod automatically removes this status both when you acquire it and when the game starts, ensuring you never have to deal with this frustrating mechanic.
 
+<samp><b>[Wizard No Level Up Spells](https://github.com/jinghaihan/bg3-mod-collection/tree/main/wizard-no-levelup-spells/wizard-no-levelup-spells.pak)</b></samp>
+
+Removes Wizard level-up spell and cantrip picks, so Wizards do not receive free spellbook progress from the level-up flow. The intended spell-learning path is the normal Wizard spellbook scroll-learning system, while the class still keeps its spell slots, Arcane Recovery, subclass progression, feats/ASI choices, and school features.
+
 <samp><b>[Inspiration Console Tools](https://github.com/jinghaihan/bg3-mod-collection/blob/main/inspiration-console-tools/inspiration-console-tools.pak)</b></samp>
 
 Script Extender console utility for inspecting background inspiration goals, checking missing goals per character, and optionally granting missing goals in bulk. Includes a sorted `inspiration_goals.csv` snapshot for quick reference and validation.
