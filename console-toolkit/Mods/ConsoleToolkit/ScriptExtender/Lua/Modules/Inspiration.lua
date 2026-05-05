@@ -2,17 +2,19 @@
 --
 -- This mod auto-loads this file via BootstrapServer.lua.
 -- Then call from the Script Extender console:
--- InspirationConsole.help()
+-- ConsoleToolkit.inspiration.help()
 
-InspirationConsole = InspirationConsole or {}
+ConsoleToolkit = ConsoleToolkit or {}
+ConsoleToolkit.modules = ConsoleToolkit.modules or {}
+ConsoleToolkit.inspiration = ConsoleToolkit.inspiration or {}
+ConsoleToolkit.modules.inspiration = ConsoleToolkit.inspiration
+
+-- Short aliases for Script Extender console calls through Mods.ConsoleToolkit.*.
+inspiration = ConsoleToolkit.inspiration
+InspirationConsole = ConsoleToolkit.inspiration
 
 local function out(msg)
-  local text = tostring(msg)
-  if Ext and Ext.Utils and Ext.Utils.Print then
-    Ext.Utils.Print(text)
-  else
-    print(text)
-  end
+  ConsoleToolkit.out(msg)
 end
 
 local function safe_rows(db_get)
@@ -165,25 +167,25 @@ local function missing_goals_for_character(character_id, ignore_blocked)
   return result
 end
 
-function InspirationConsole.help()
-  out("=== InspirationConsole Commands ===")
-  out("InspirationConsole.dump_all_goals()")
-  out("InspirationConsole.dump_blocked_all()")
-  out("InspirationConsole.dump_players()")
-  out("InspirationConsole.dump_missing(<character_uuid>)")
-  out("InspirationConsole.dump_missing_ignore_blocked(<character_uuid>)")
-  out("InspirationConsole.dump_blocked(<character_uuid>)")
-  out("InspirationConsole.dump_missing_all_players()")
-  out("InspirationConsole.dump_blocked_all_players()")
-  out("InspirationConsole.grant_missing(<character_uuid>, <dry_run>, <max_count>)")
-  out("InspirationConsole.grant_missing_ignore_blocked(<character_uuid>, <dry_run>, <max_count>)")
-  out("InspirationConsole.grant_missing_all_players(<dry_run>, <max_count_per_player>)")
-  out("InspirationConsole.grant_missing_ignore_blocked_all_players(<dry_run>, <max_count_per_player>)")
-  out("InspirationConsole.dump_all_goals_csv()")
+function ConsoleToolkit.inspiration.help()
+  out("=== ConsoleToolkit.inspiration Commands ===")
+  out("ConsoleToolkit.inspiration.dump_all_goals()")
+  out("ConsoleToolkit.inspiration.dump_blocked_all()")
+  out("ConsoleToolkit.inspiration.dump_players()")
+  out("ConsoleToolkit.inspiration.dump_missing(<character_uuid>)")
+  out("ConsoleToolkit.inspiration.dump_missing_ignore_blocked(<character_uuid>)")
+  out("ConsoleToolkit.inspiration.dump_blocked(<character_uuid>)")
+  out("ConsoleToolkit.inspiration.dump_missing_all_players()")
+  out("ConsoleToolkit.inspiration.dump_blocked_all_players()")
+  out("ConsoleToolkit.inspiration.grant_missing(<character_uuid>, <dry_run>, <max_count>)")
+  out("ConsoleToolkit.inspiration.grant_missing_ignore_blocked(<character_uuid>, <dry_run>, <max_count>)")
+  out("ConsoleToolkit.inspiration.grant_missing_all_players(<dry_run>, <max_count_per_player>)")
+  out("ConsoleToolkit.inspiration.grant_missing_ignore_blocked_all_players(<dry_run>, <max_count_per_player>)")
+  out("ConsoleToolkit.inspiration.dump_all_goals_csv()")
   out("Tip: dry_run defaults to true. Pass false to actually grant goals.")
 end
 
-function InspirationConsole.dump_all_goals()
+function ConsoleToolkit.inspiration.dump_all_goals()
   local rows = all_background_goals()
   out(string.format("Total DB_GLO_Backgrounds_Goal rows: %d", #rows))
   for i, row in ipairs(rows) do
@@ -198,7 +200,7 @@ function InspirationConsole.dump_all_goals()
   end
 end
 
-function InspirationConsole.dump_blocked_all()
+function ConsoleToolkit.inspiration.dump_blocked_all()
   local rows = blocked_goals_all()
   out(string.format("Blocked goals in DB_GLO_Backgrounds_Blocked: %d", #rows))
   for i, item in ipairs(rows) do
@@ -213,7 +215,7 @@ function InspirationConsole.dump_blocked_all()
   end
 end
 
-function InspirationConsole.dump_all_goals_csv()
+function ConsoleToolkit.inspiration.dump_all_goals_csv()
   local rows = all_background_goals()
   out("background_tag,goal_string,goal_uuid,scope")
   for _, row in ipairs(rows) do
@@ -227,7 +229,7 @@ function InspirationConsole.dump_all_goals_csv()
   end
 end
 
-function InspirationConsole.dump_players()
+function ConsoleToolkit.inspiration.dump_players()
   local ids = player_ids()
   out(string.format("Total DB_Players rows: %d", #ids))
   for i, id in ipairs(ids) do
@@ -235,7 +237,7 @@ function InspirationConsole.dump_players()
   end
 end
 
-function InspirationConsole.dump_missing(character_id)
+function ConsoleToolkit.inspiration.dump_missing(character_id)
   local missing = missing_goals_for_character(character_id)
   out(string.format("Missing goals for %s: %d", tostring(character_id), #missing))
   for i, item in ipairs(missing) do
@@ -250,7 +252,7 @@ function InspirationConsole.dump_missing(character_id)
   end
 end
 
-function InspirationConsole.dump_missing_ignore_blocked(character_id)
+function ConsoleToolkit.inspiration.dump_missing_ignore_blocked(character_id)
   local missing = missing_goals_for_character(character_id, true)
   out(string.format("Missing goals for %s, ignoring blocked state: %d", tostring(character_id), #missing))
   for i, item in ipairs(missing) do
@@ -265,7 +267,7 @@ function InspirationConsole.dump_missing_ignore_blocked(character_id)
   end
 end
 
-function InspirationConsole.dump_blocked(character_id)
+function ConsoleToolkit.inspiration.dump_blocked(character_id)
   local rows = blocked_goals_for_character(character_id)
   out(string.format("Blocked goals for %s: %d", tostring(character_id), #rows))
   for i, item in ipairs(rows) do
@@ -280,19 +282,19 @@ function InspirationConsole.dump_blocked(character_id)
   end
 end
 
-function InspirationConsole.dump_missing_all_players()
+function ConsoleToolkit.inspiration.dump_missing_all_players()
   for _, id in ipairs(player_ids()) do
-    InspirationConsole.dump_missing(id)
+    ConsoleToolkit.inspiration.dump_missing(id)
   end
 end
 
-function InspirationConsole.dump_blocked_all_players()
+function ConsoleToolkit.inspiration.dump_blocked_all_players()
   for _, id in ipairs(player_ids()) do
-    InspirationConsole.dump_blocked(id)
+    ConsoleToolkit.inspiration.dump_blocked(id)
   end
 end
 
-function InspirationConsole.grant_missing(character_id, dry_run, max_count)
+function ConsoleToolkit.inspiration.grant_missing(character_id, dry_run, max_count)
   if dry_run == nil then
     dry_run = true
   end
@@ -326,7 +328,7 @@ function InspirationConsole.grant_missing(character_id, dry_run, max_count)
   ))
 end
 
-function InspirationConsole.grant_missing_ignore_blocked(character_id, dry_run, max_count)
+function ConsoleToolkit.inspiration.grant_missing_ignore_blocked(character_id, dry_run, max_count)
   if dry_run == nil then
     dry_run = true
   end
@@ -360,16 +362,16 @@ function InspirationConsole.grant_missing_ignore_blocked(character_id, dry_run, 
   ))
 end
 
-function InspirationConsole.grant_missing_all_players(dry_run, max_count_per_player)
+function ConsoleToolkit.inspiration.grant_missing_all_players(dry_run, max_count_per_player)
   for _, id in ipairs(player_ids()) do
-    InspirationConsole.grant_missing(id, dry_run, max_count_per_player)
+    ConsoleToolkit.inspiration.grant_missing(id, dry_run, max_count_per_player)
   end
 end
 
-function InspirationConsole.grant_missing_ignore_blocked_all_players(dry_run, max_count_per_player)
+function ConsoleToolkit.inspiration.grant_missing_ignore_blocked_all_players(dry_run, max_count_per_player)
   for _, id in ipairs(player_ids()) do
-    InspirationConsole.grant_missing_ignore_blocked(id, dry_run, max_count_per_player)
+    ConsoleToolkit.inspiration.grant_missing_ignore_blocked(id, dry_run, max_count_per_player)
   end
 end
 
-out("InspirationConsole loaded. Run InspirationConsole.help()")
+out("ConsoleToolkit.inspiration loaded. Run ConsoleToolkit.inspiration.help()")

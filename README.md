@@ -18,9 +18,9 @@ Automatically removes the "Enemy of Justice" status effect, which is an annoying
 
 Removes Wizard level-up spell and cantrip picks, so Wizards do not receive free spellbook progress from the level-up flow. The intended spell-learning path is the normal Wizard spellbook scroll-learning system, while the class still keeps its spell slots, Arcane Recovery, subclass progression, feats/ASI choices, and school features.
 
-<samp><b>[Inspiration Console Tools](https://github.com/jinghaihan/bg3-mod-collection/blob/main/inspiration-console-tools/inspiration-console-tools.pak)</b></samp>
+<samp><b>[Console Toolkit](https://github.com/jinghaihan/bg3-mod-collection/tree/main/console-toolkit/console-toolkit.pak)</b></samp>
 
-Script Extender console utility for inspecting background inspiration goals, checking missing goals per character, and optionally granting missing goals in bulk. Includes a sorted `inspiration_goals.csv` snapshot for quick reference and validation.
+Modular Script Extender console toolkit for reusable BG3 utility commands. Currently includes an inspiration module for inspecting background inspiration goals, checking missing goals per character, and optionally granting missing goals in bulk, plus a sorted `inspiration_goals.csv` snapshot for quick reference and validation.
 
 <samp><b>Mods I Use</b></samp>
 
