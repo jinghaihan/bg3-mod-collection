@@ -8,9 +8,11 @@ The goal is to keep reusable console utilities in one mod instead of creating a 
 
 - `Mods/ConsoleToolkit/`: the mod package.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/ConsoleToolkit.lua`: shared bootstrap and top-level helper commands.
+- `Mods/ConsoleToolkit/ScriptExtender/Lua/Constants.lua`: shared UUID constants for companion helpers.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Inspiration.lua`: background inspiration helper module.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Status.lua`: status and crime-state helper module.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Items.lua`: item and equipment helper module.
+- `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Party.lua`: party and companion-state helper module.
 - `Public/ConsoleToolkit/Stats/Generated/Data/Armor.txt`: camp clothing stat entries used by the item module.
 - `inspiration_goals.csv`: full inspiration goal list snapshot, sorted by background.
 
@@ -32,6 +34,9 @@ Mods.ConsoleToolkit.status.help()
 
 -- show item module commands
 Mods.ConsoleToolkit.items.help()
+
+-- show party module commands
+Mods.ConsoleToolkit.party.help()
 ```
 
 You can also call the global table directly:
@@ -43,6 +48,7 @@ ConsoleToolkit.help()
 ConsoleToolkit.inspiration.help()
 ConsoleToolkit.status.help()
 ConsoleToolkit.items.help()
+ConsoleToolkit.party.help()
 ```
 
 ## Inspiration Module
@@ -173,6 +179,32 @@ Mods.ConsoleToolkit.items.grant_digital_deluxe_clothing("<character_uuid>", fals
 ```
 
 The prologue set uses original game item templates directly. The epilogue and digital deluxe sets use the armor stat entries copied from the companion camp outfit data; this module does not include the old custom backpack objects or any `TUT_Chest_Potions` treasure-table merge.
+
+## Party Module
+
+`ConsoleToolkit.party` provides manual fixes for party and companion state bugs.
+
+```lua
+server
+
+-- refresh Jaheira's party-member state so she is treated as a real party member
+-- for auto-combat joining and party-targeted buffs
+Mods.ConsoleToolkit.party.fix_jaheira_party_member()
+
+-- same fix, but with an explicit host character ID
+Mods.ConsoleToolkit.party.fix_jaheira_party_member("<host_character_uuid>")
+```
+
+This function runs the same two Osiris calls manually:
+
+```lua
+server
+
+local jaheira = Mods.ConsoleToolkit.constants.companions.JAHEIRA
+local host = GetHostCharacter()
+Osi.PROC_GLO_PartyMembers_Remove(jaheira, host, 0)
+Osi.PROC_Hirelings_AddToParty(jaheira, host)
+```
 
 ## Background Summary
 

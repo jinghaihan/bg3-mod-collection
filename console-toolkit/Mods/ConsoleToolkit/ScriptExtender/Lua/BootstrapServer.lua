@@ -1,5 +1,7 @@
 Ext.Require("ConsoleToolkit.lua")
+Ext.Require("Constants.lua")
 Ext.Require("Utils.lua")
 Ext.Require("Modules/Inspiration.lua")
 Ext.Require("Modules/Status.lua")
 Ext.Require("Modules/Items.lua")
+Ext.Require("Modules/Party.lua")
