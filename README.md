@@ -14,6 +14,10 @@ Automatically restores companion approval ratings when they drop, allowing you t
 
 Automatically removes the "Enemy of Justice" status effect, which is an annoying and unsolvable debuff that can ruin your gameplay experience. This mod automatically removes this status both when you acquire it and when the game starts, ensuring you never have to deal with this frustrating mechanic.
 
+<samp><b>[Inspiration Console Tools](https://github.com/jinghaihan/bg3-mod-collection/blob/main/inspiration-console-tools/inspiration-console-tools.pak)</b></samp>
+
+Script Extender console utility for inspecting background inspiration goals, checking missing goals per character, and optionally granting missing goals in bulk. Includes a sorted `inspiration_goals.csv` snapshot for quick reference and validation.
+
 <samp><b>Mods I Use</b></samp>
 
 + [Native Mod Loader](https://www.nexusmods.com/baldursgate3/mods/944)
@@ -29,6 +33,7 @@ Automatically removes the "Enemy of Justice" status effect, which is an annoying
 + [Tutorial Chest Summoning](https://www.nexusmods.com/baldursgate3/mods/457)
 + [Transmog Enhanced](https://www.nexusmods.com/baldursgate3/mods/2922)
 + [Normal Half Illithid](https://www.nexusmods.com/baldursgate3/mods/12026?tab=description)
++ [Disguise Self - Origins and Companions](https://www.nexusmods.com/baldursgate3/mods/12004)
 + [Vemperen Heads For Elf Tiefling Human Drow Half Elf](https://www.nexusmods.com/baldursgate3/mods/2523)
 + [New head](https://www.nexusmods.com/baldursgate3/mods/2270)
 + [Vessnelle's Hair Collection](https://www.nexusmods.com/baldursgate3/mods/1420)
