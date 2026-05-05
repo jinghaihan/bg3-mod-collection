@@ -20,7 +20,7 @@ Removes Wizard level-up spell and cantrip picks, so Wizards do not receive free 
 
 <samp><b>[Console Toolkit](https://github.com/jinghaihan/bg3-mod-collection/tree/main/console-toolkit/console-toolkit.pak)</b></samp>
 
-Modular Script Extender console toolkit for reusable BG3 utility commands. Currently includes an inspiration module for inspecting background inspiration goals, checking missing goals per character, and optionally granting missing goals in bulk, plus a sorted `inspiration_goals.csv` snapshot for quick reference and validation.
+Modular Script Extender console toolkit for reusable BG3 utility commands. Includes modules for background inspiration goals, status/crime cleanup, and directly granting companion camp clothing or digital deluxe clothing sets without using the Tutorial Chest or custom backpack containers, plus a sorted `inspiration_goals.csv` snapshot for quick reference and validation.
 
 <samp><b>Mods I Use</b></samp>
 

@@ -10,6 +10,8 @@ The goal is to keep reusable console utilities in one mod instead of creating a 
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/ConsoleToolkit.lua`: shared bootstrap and top-level helper commands.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Inspiration.lua`: background inspiration helper module.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Status.lua`: status and crime-state helper module.
+- `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Items.lua`: item and equipment helper module.
+- `Public/ConsoleToolkit/Stats/Generated/Data/Armor.txt`: camp clothing stat entries used by the item module.
 - `inspiration_goals.csv`: full inspiration goal list snapshot, sorted by background.
 
 ## Console Usage
@@ -27,6 +29,9 @@ Mods.ConsoleToolkit.inspiration.help()
 
 -- show status module commands
 Mods.ConsoleToolkit.status.help()
+
+-- show item module commands
+Mods.ConsoleToolkit.items.help()
 ```
 
 You can also call the global table directly:
@@ -37,6 +42,7 @@ server
 ConsoleToolkit.help()
 ConsoleToolkit.inspiration.help()
 ConsoleToolkit.status.help()
+ConsoleToolkit.items.help()
 ```
 
 ## Inspiration Module
@@ -135,6 +141,38 @@ Mods.ConsoleToolkit.status.remove_enemy_of_justice("<character_uuid>")
 -- while suspending and clearing guard-killer crime records once
 Mods.ConsoleToolkit.status.remove_enemy_of_justice_all_players()
 ```
+
+## Items Module
+
+`ConsoleToolkit.items` provides manual item and equipment grant helpers. These functions add items directly to the target character and do not use the Tutorial Chest.
+
+```lua
+server
+
+-- add the prologue companion camp clothing set to the host character
+Mods.ConsoleToolkit.items.grant_prologue_camp_clothing()
+
+-- add the epilogue companion camp clothing set to the host character
+Mods.ConsoleToolkit.items.grant_epilogue_camp_clothing()
+
+-- add the digital deluxe clothing set to the host character
+Mods.ConsoleToolkit.items.grant_digital_deluxe_clothing()
+
+-- alias for the same DLC_TWITCH_* clothing set
+Mods.ConsoleToolkit.items.grant_twitch_clothing()
+
+-- dry run for a specific character
+Mods.ConsoleToolkit.items.grant_prologue_camp_clothing("<character_uuid>", true)
+Mods.ConsoleToolkit.items.grant_epilogue_camp_clothing("<character_uuid>", true)
+Mods.ConsoleToolkit.items.grant_digital_deluxe_clothing("<character_uuid>", true)
+
+-- real grant for a specific character
+Mods.ConsoleToolkit.items.grant_prologue_camp_clothing("<character_uuid>", false)
+Mods.ConsoleToolkit.items.grant_epilogue_camp_clothing("<character_uuid>", false)
+Mods.ConsoleToolkit.items.grant_digital_deluxe_clothing("<character_uuid>", false)
+```
+
+The prologue set uses original game item templates directly. The epilogue and digital deluxe sets use the armor stat entries copied from the companion camp outfit data; this module does not include the old custom backpack objects or any `TUT_Chest_Potions` treasure-table merge.
 
 ## Background Summary
 
