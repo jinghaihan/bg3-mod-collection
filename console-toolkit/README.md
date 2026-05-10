@@ -260,7 +260,27 @@ Mods.ConsoleToolkit.character.start_change_appearance()
 
 -- open the respec flow for the host character
 Mods.ConsoleToolkit.character.start_respec()
+
+-- remove or restore the half-illithid appearance on the host character
+Mods.ConsoleToolkit.character.remove_half_illithid_appearance()
+Mods.ConsoleToolkit.character.add_half_illithid_appearance()
+
+-- remove or restore the Volo ersatz eye appearance on the host character
+Mods.ConsoleToolkit.character.remove_volo_ersatz_eye_appearance()
+Mods.ConsoleToolkit.character.add_volo_ersatz_eye_appearance()
+
+-- remove or restore Wyll's devil appearance; defaults to Wyll
+Mods.ConsoleToolkit.character.remove_wyll_devil_appearance()
+Mods.ConsoleToolkit.character.add_wyll_devil_appearance()
+
+-- target explicit character IDs instead of the defaults
+Mods.ConsoleToolkit.character.remove_half_illithid_appearance("<character_uuid>")
+Mods.ConsoleToolkit.character.add_volo_ersatz_eye_appearance("<character_uuid>")
+Mods.ConsoleToolkit.character.remove_wyll_devil_appearance("S_Player_Wyll_c774d764-4a17-48dc-b470-32ace9ce447d")
 ```
+
+The appearance helpers only add/remove visual material overrides or transforms. They do not set story flags, tags, statuses, tadpole powers, or Volo/Wyll quest state.
+`add_part_illithid_appearance` / `remove_part_illithid_appearance` and the older `partial_ceremorph` names are kept as aliases.
 
 ## Teleport Module
 
