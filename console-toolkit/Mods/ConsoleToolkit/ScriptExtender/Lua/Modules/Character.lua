@@ -39,9 +39,23 @@ local function change_one_approval(companion_id, target, amount)
   out(string.format("[OK] changed approval=%d | companion=%s | target=%s", amount, tostring(companion_id), tostring(target)))
 end
 
+local function get_approval_or_zero(companion_id, target)
+  local ok, approval = pcall(function()
+    return Osi.GetApprovalRating(companion_id, target)
+  end)
+
+  if ok and approval ~= nil then
+    return approval
+  end
+
+  return 0
+end
+
 function ConsoleToolkit.character.help()
   out("=== ConsoleToolkit.character Commands ===")
   out("Mods.ConsoleToolkit.character.change_approval(<amount>, <companion_uuid>)")
+  out('Mods.ConsoleToolkit.character.change_approval("max", <companion_uuid>)')
+  out("Mods.ConsoleToolkit.character.max_approval(<companion_uuid>)")
   out("Mods.ConsoleToolkit.character.start_change_appearance(<character_uuid>)")
   out("Mods.ConsoleToolkit.character.start_respec(<character_uuid>)")
   out("Mods.ConsoleToolkit.character.add_half_illithid_appearance(<character_uuid>)")
@@ -51,10 +65,49 @@ function ConsoleToolkit.character.help()
   out("Mods.ConsoleToolkit.character.add_wyll_devil_appearance(<character_uuid>)")
   out("Mods.ConsoleToolkit.character.remove_wyll_devil_appearance(<character_uuid>)")
   out("Tip: change_approval amount defaults to 10; omit companion_uuid to apply to all constants.companions.")
+  out("Tip: max_approval targets every DB_Players avatar, so co-op Tavs and Dark Urge avatars are included.")
   out("Tip: appearance/respec/material character_uuid defaults to GetHostCharacter(); Wyll devil character_uuid defaults to Wyll.")
 end
 
+function ConsoleToolkit.character.max_approval(companion_id)
+  local players = ConsoleToolkit.utils.player_ids()
+  local touched = 0
+
+  for _, target in ipairs(players) do
+    if companion_id ~= nil then
+      local delta = 100 - get_approval_or_zero(companion_id, target)
+      if delta ~= 0 then
+        change_one_approval(companion_id, target, delta)
+      end
+      touched = touched + 1
+    else
+      for _, name in ipairs(ConsoleToolkit.constants.companion_names) do
+        local id = ConsoleToolkit.constants.companions[name]
+        if id ~= nil then
+          local delta = 100 - get_approval_or_zero(id, target)
+          if delta ~= 0 then
+            change_one_approval(id, target, delta)
+          end
+          touched = touched + 1
+        end
+      end
+    end
+  end
+
+  out(string.format(
+    "Done | maxed approval | players=%d | companion_scope=%s | touched=%d",
+    #players,
+    companion_id ~= nil and tostring(companion_id) or "all constants.companions",
+    touched
+  ))
+end
+
 function ConsoleToolkit.character.change_approval(amount, companion_id)
+  if amount == "max" then
+    ConsoleToolkit.character.max_approval(companion_id)
+    return
+  end
+
   local target = GetHostCharacter()
   local value = ConsoleToolkit.utils.integer_or_default(amount, 10)
 

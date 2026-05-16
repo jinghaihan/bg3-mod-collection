@@ -15,6 +15,7 @@ The goal is to keep reusable console utilities in one mod instead of creating a 
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Party.lua`: party and companion-state helper module.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Resources.lua`: gold and tadpole helper module.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Character.lua`: approval, appearance, and respec helper module.
+- `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Trade.lua`: loaded-trader attitude helper module.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Teleport.lua`: teleport helper module.
 - `Mods/ConsoleToolkit/ScriptExtender/Lua/Modules/Paladin.lua`: paladin oath helper module.
 - `Public/ConsoleToolkit/Stats/Generated/Data/Armor.txt`: camp clothing stat entries used by the item module.
@@ -255,6 +256,15 @@ Mods.ConsoleToolkit.character.change_approval(100)
 -- add 10 approval with one specific companion toward the host character
 Mods.ConsoleToolkit.character.change_approval(10, Mods.ConsoleToolkit.constants.companions.SHADOWHEART)
 
+-- set every companion constant to 100 approval toward every DB_Players avatar
+-- this includes multiple co-op-controlled avatars such as Tav and Dark Urge
+Mods.ConsoleToolkit.character.max_approval()
+Mods.ConsoleToolkit.character.change_approval("max")
+
+-- set one companion to 100 approval toward every DB_Players avatar
+Mods.ConsoleToolkit.character.max_approval(Mods.ConsoleToolkit.constants.companions.SHADOWHEART)
+Mods.ConsoleToolkit.character.change_approval("max", Mods.ConsoleToolkit.constants.companions.SHADOWHEART)
+
 -- open the change appearance flow for the host character
 Mods.ConsoleToolkit.character.start_change_appearance()
 
@@ -281,6 +291,26 @@ Mods.ConsoleToolkit.character.remove_wyll_devil_appearance("S_Player_Wyll_c774d7
 
 The appearance helpers only add/remove visual material overrides or transforms. They do not set story flags, tags, statuses, tadpole powers, or Volo/Wyll quest state.
 `add_part_illithid_appearance` / `remove_part_illithid_appearance` and the older `partial_ceremorph` names are kept as aliases.
+
+## Trade Module
+
+`ConsoleToolkit.trade` provides loaded-trader attitude helpers.
+
+```lua
+server
+
+-- return a Lua table of currently loaded TRADER-tagged character IDs
+Mods.ConsoleToolkit.trade.get_loaded_trader_ids()
+
+-- print every currently loaded trader and its attitude toward each DB_Players avatar
+Mods.ConsoleToolkit.trade.list_loaded_traders()
+
+-- set every currently loaded TRADER-tagged character to 100 attitude
+-- toward every DB_Players avatar
+Mods.ConsoleToolkit.trade.max_loaded_trader_attitude()
+```
+
+The trade helper only scans currently loaded `ServerCharacter` entities, so run it after the relevant traders are present in the loaded area.
 
 ## Teleport Module
 

@@ -22,6 +22,7 @@ local function toolkit_help()
   ConsoleToolkit.out("Mods.ConsoleToolkit.party.help()")
   ConsoleToolkit.out("Mods.ConsoleToolkit.resources.help()")
   ConsoleToolkit.out("Mods.ConsoleToolkit.character.help()")
+  ConsoleToolkit.out("Mods.ConsoleToolkit.trade.help()")
   ConsoleToolkit.out("Mods.ConsoleToolkit.teleport.help()")
   ConsoleToolkit.out("Mods.ConsoleToolkit.paladin.help()")
 end
